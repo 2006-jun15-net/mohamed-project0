@@ -1,0 +1,9 @@
+C:\Revature\mohamed-project0\StoreApp\StoreApp.DataAccess\bin\Debug\netstandard2.0\StoreApp.DataAccess.deps.json
+C:\Revature\mohamed-project0\StoreApp\StoreApp.DataAccess\bin\Debug\netstandard2.0\StoreApp.DataAccess.dll
+C:\Revature\mohamed-project0\StoreApp\StoreApp.DataAccess\obj\Debug\netstandard2.0\StoreApp.DataAccess.csprojAssemblyReference.cache
+C:\Revature\mohamed-project0\StoreApp\StoreApp.DataAccess\obj\Debug\netstandard2.0\StoreApp.DataAccess.AssemblyInfoInputs.cache
+C:\Revature\mohamed-project0\StoreApp\StoreApp.DataAccess\obj\Debug\netstandard2.0\StoreApp.DataAccess.AssemblyInfo.cs
+C:\Revature\mohamed-project0\StoreApp\StoreApp.DataAccess\bin\Debug\netstandard2.0\StoreApp.DataAccess.pdb
+C:\Revature\mohamed-project0\StoreApp\StoreApp.DataAccess\obj\Debug\netstandard2.0\StoreApp.DataAccess.csproj.CoreCompileInputs.cache
+C:\Revature\mohamed-project0\StoreApp\StoreApp.DataAccess\obj\Debug\netstandard2.0\StoreApp.DataAccess.dll
+C:\Revature\mohamed-project0\StoreApp\StoreApp.DataAccess\obj\Debug\netstandard2.0\StoreApp.DataAccess.pdb

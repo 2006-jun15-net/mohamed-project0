@@ -17,6 +17,7 @@
   </ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\StoreApp.DataAccess\StoreApp.DataAccess.csproj" />
 		<ProjectReference Include="..\StoreApp.Library\StoreApp.Library.csproj" />
 	</ItemGroup>
 

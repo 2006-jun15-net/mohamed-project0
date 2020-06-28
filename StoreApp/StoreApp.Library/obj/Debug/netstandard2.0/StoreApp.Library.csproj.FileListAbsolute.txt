@@ -7,3 +7,12 @@ C:\Revature\project0\StoreApp\StoreApp.Library\obj\Debug\netstandard2.0\StoreApp
 C:\Revature\project0\StoreApp\StoreApp.Library\obj\Debug\netstandard2.0\StoreApp.Library.dll
 C:\Revature\project0\StoreApp\StoreApp.Library\obj\Debug\netstandard2.0\StoreApp.Library.pdb
 C:\Revature\project0\StoreApp\StoreApp.Library\obj\Debug\netstandard2.0\StoreApp.Library.csproj.CoreCompileInputs.cache
+C:\Revature\mohamed-project0\StoreApp\StoreApp.Library\bin\Debug\netstandard2.0\StoreApp.Library.deps.json
+C:\Revature\mohamed-project0\StoreApp\StoreApp.Library\bin\Debug\netstandard2.0\StoreApp.Library.dll
+C:\Revature\mohamed-project0\StoreApp\StoreApp.Library\bin\Debug\netstandard2.0\StoreApp.Library.pdb
+C:\Revature\mohamed-project0\StoreApp\StoreApp.Library\obj\Debug\netstandard2.0\StoreApp.Library.csprojAssemblyReference.cache
+C:\Revature\mohamed-project0\StoreApp\StoreApp.Library\obj\Debug\netstandard2.0\StoreApp.Library.AssemblyInfoInputs.cache
+C:\Revature\mohamed-project0\StoreApp\StoreApp.Library\obj\Debug\netstandard2.0\StoreApp.Library.AssemblyInfo.cs
+C:\Revature\mohamed-project0\StoreApp\StoreApp.Library\obj\Debug\netstandard2.0\StoreApp.Library.csproj.CoreCompileInputs.cache
+C:\Revature\mohamed-project0\StoreApp\StoreApp.Library\obj\Debug\netstandard2.0\StoreApp.Library.dll
+C:\Revature\mohamed-project0\StoreApp\StoreApp.Library\obj\Debug\netstandard2.0\StoreApp.Library.pdb
