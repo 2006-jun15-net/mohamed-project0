@@ -21,4 +21,8 @@
 		<ProjectReference Include="..\StoreApp.Library\StoreApp.Library.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Entities\" />
+	</ItemGroup>
+
 </Project>
