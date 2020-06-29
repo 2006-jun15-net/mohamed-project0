@@ -6,7 +6,6 @@ namespace StoreApp.Library.Models
 {
     public class Customer
     {
-        private static int customerIdSeed = 12345;
         public int customerID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -19,8 +18,6 @@ namespace StoreApp.Library.Models
         {
             this.FirstName = firstname;
             this.LastName = lastname;
-            this.customerID = customerIdSeed;
-            customerIdSeed++;
         }
     }
 }
