@@ -8,19 +8,19 @@ using StoreApp.DataAccess.Models;
 
 namespace StoreApp
 {
-    class Program
+    public class Program
     {
         public static readonly ILoggerFactory MyLoggerFactory
             = LoggerFactory.Create(builder => { builder.AddConsole(); });
-
+        
         public static readonly DbContextOptions<NewDataBaseContext> Options = new DbContextOptionsBuilder<NewDataBaseContext>()
             .UseLoggerFactory(MyLoggerFactory)
             .UseSqlServer(SecretConfiguration.ConnectionString)
             .Options;
-
+        
         public static void Main(string[] args)
         {
-            Customer john = new Customer("Jon","Doe");
+            Library.Models.Customer john = new Library.Models.Customer("Jon","Doe");
             Console.WriteLine(john.FirstName);
             RunUI();
 
@@ -37,6 +37,8 @@ namespace StoreApp
                     case 1:
                         break;
                     case 2:
+                        AddCustomer();
+                        DisplayMenu();
                         break;
                     case 3:
                         break;
@@ -75,6 +77,29 @@ namespace StoreApp
                 goto Begin;
             }
             return UserInput;
+        }
+        public static void AddCustomer()
+        {
+            // for adding, you also don't need to worry about foreign key values.
+            // you can add/change relationships between objects via the navigation
+
+            Console.WriteLine("Enter a new customer first name: ");
+            var Firstname = Console.ReadLine();
+            Console.WriteLine("Enter a new customer last name: ");
+            var Lastname = Console.ReadLine();
+
+            using var context = new NewDataBaseContext(Options);
+
+            var CurrentCustomer = new Library.Models.Customer(Firstname,Lastname);
+
+
+            context.Add(CurrentCustomer);
+
+            
+
+            context.SaveChanges();
+            // after savechanges, any new or updated stuff implicit in what i coded before
+            //   is filled in by EF for you on those tracked objects.
         }
 
         /*

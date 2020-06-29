@@ -8,7 +8,7 @@ namespace StoreApp.DataAccess.Models
         public Product()
         {
             Inventory = new HashSet<Inventory>();
-            Orders = new HashSet<Orders>();
+            Order = new HashSet<Order>();
         }
 
         public int ProductId { get; set; }
@@ -16,6 +16,6 @@ namespace StoreApp.DataAccess.Models
         public decimal Price { get; set; }
 
         public virtual ICollection<Inventory> Inventory { get; set; }
-        public virtual ICollection<Orders> Orders { get; set; }
+        public virtual ICollection<Order> Order { get; set; }
     }
 }

@@ -15,11 +15,11 @@ namespace StoreApp.DataAccess.Models
         {
         }
 
-        public virtual DbSet<Customers> Customers { get; set; }
+        public virtual DbSet<Customer> Customer { get; set; }
         public virtual DbSet<Inventory> Inventory { get; set; }
         public virtual DbSet<Location> Location { get; set; }
+        public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<OrderHistory> OrderHistory { get; set; }
-        public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<Product> Product { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -33,11 +33,8 @@ namespace StoreApp.DataAccess.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Customers>(entity =>
+            modelBuilder.Entity<Customer>(entity =>
             {
-                entity.HasKey(e => e.CustomerId)
-                    .HasName("PK_Customer");
-
                 entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
 
                 entity.Property(e => e.FirstName)
@@ -75,6 +72,26 @@ namespace StoreApp.DataAccess.Models
                     .HasMaxLength(250);
             });
 
+            modelBuilder.Entity<Order>(entity =>
+            {
+                entity.HasKey(e => new { e.OrderId, e.ProductId })
+                    .HasName("PK_Orders");
+
+                entity.Property(e => e.OrderId).HasColumnName("OrderID");
+
+                entity.Property(e => e.ProductId).HasColumnName("ProductID");
+
+                entity.HasOne(d => d.OrderNavigation)
+                    .WithMany(p => p.Order)
+                    .HasForeignKey(d => d.OrderId)
+                    .HasConstraintName("FK_Orders_OrderHistory_OrderID");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.Order)
+                    .HasForeignKey(d => d.ProductId)
+                    .HasConstraintName("FK_Orders_Product_ProductID");
+            });
+
             modelBuilder.Entity<OrderHistory>(entity =>
             {
                 entity.HasKey(e => e.OrderId);
@@ -89,29 +106,11 @@ namespace StoreApp.DataAccess.Models
 
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.OrderHistory)
-                    .HasForeignKey(d => d.CustomerId)
-                    .HasConstraintName("FK_OrderHistory_Customer_CustomerID");
+                    .HasForeignKey(d => d.CustomerId);
 
                 entity.HasOne(d => d.Location)
                     .WithMany(p => p.OrderHistory)
                     .HasForeignKey(d => d.LocationId);
-            });
-
-            modelBuilder.Entity<Orders>(entity =>
-            {
-                entity.HasKey(e => new { e.OrderId, e.ProductId });
-
-                entity.Property(e => e.OrderId).HasColumnName("OrderID");
-
-                entity.Property(e => e.ProductId).HasColumnName("ProductID");
-
-                entity.HasOne(d => d.Order)
-                    .WithMany(p => p.Orders)
-                    .HasForeignKey(d => d.OrderId);
-
-                entity.HasOne(d => d.Product)
-                    .WithMany(p => p.Orders)
-                    .HasForeignKey(d => d.ProductId);
             });
 
             modelBuilder.Entity<Product>(entity =>

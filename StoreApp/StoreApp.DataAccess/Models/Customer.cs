@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace StoreApp.DataAccess.Models
 {
-    public partial class Customers
+    public partial class Customer
     {
-        public Customers()
+        public Customer()
         {
             OrderHistory = new HashSet<OrderHistory>();
         }

@@ -7,7 +7,7 @@ namespace StoreApp.DataAccess.Models
     {
         public OrderHistory()
         {
-            Orders = new HashSet<Orders>();
+            Order = new HashSet<Order>();
         }
 
         public int OrderId { get; set; }
@@ -16,8 +16,8 @@ namespace StoreApp.DataAccess.Models
         public DateTime Date { get; set; }
         public TimeSpan Time { get; set; }
 
-        public virtual Customers Customer { get; set; }
+        public virtual Customer Customer { get; set; }
         public virtual Location Location { get; set; }
-        public virtual ICollection<Orders> Orders { get; set; }
+        public virtual ICollection<Order> Order { get; set; }
     }
 }
