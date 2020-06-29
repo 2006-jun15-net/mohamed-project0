@@ -34,7 +34,7 @@ namespace StoreApp.Library.Models
             }
             else
             {
-                    purchaseItems.Add(Location.GetProduct(product), quantity);
+                    purchaseItems.Add(Location.GetProduct(product, quantity), quantity);
                 
             }
         }

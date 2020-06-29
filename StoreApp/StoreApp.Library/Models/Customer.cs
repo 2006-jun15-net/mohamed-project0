@@ -10,6 +10,8 @@ namespace StoreApp.Library.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Store { get; set; }
+        public List<Order> OrderHistory { get; set; }
+
         public string Name
         {
             get => FirstName + " " + LastName;
@@ -19,5 +21,7 @@ namespace StoreApp.Library.Models
             this.FirstName = firstname;
             this.LastName = lastname;
         }
+
+        //Add order, update order history list
     }
 }
