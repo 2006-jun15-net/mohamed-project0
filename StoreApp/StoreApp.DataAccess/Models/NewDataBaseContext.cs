@@ -15,14 +15,29 @@ namespace StoreApp.DataAccess.Models
         {
         }
 
-        public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<Customers> Customers { get; set; }
+        public virtual DbSet<Inventory> Inventory { get; set; }
+        public virtual DbSet<Location> Location { get; set; }
+        public virtual DbSet<OrderHistory> OrderHistory { get; set; }
+        public virtual DbSet<Orders> Orders { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
 
-       
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server=tcp:salam2020.database.windows.net,1433;Initial Catalog=NewDataBase;Persist Security Info=False;User ID=arman7rm;Password=CRonaldo7@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Customer>(entity =>
+            modelBuilder.Entity<Customers>(entity =>
             {
+                entity.HasKey(e => e.CustomerId)
+                    .HasName("PK_Customer");
+
                 entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
 
                 entity.Property(e => e.FirstName)
@@ -30,6 +45,82 @@ namespace StoreApp.DataAccess.Models
                     .HasMaxLength(250);
 
                 entity.Property(e => e.LastName)
+                    .IsRequired()
+                    .HasMaxLength(250);
+            });
+
+            modelBuilder.Entity<Inventory>(entity =>
+            {
+                entity.HasKey(e => new { e.LocationId, e.ProductId });
+
+                entity.Property(e => e.LocationId).HasColumnName("LocationID");
+
+                entity.Property(e => e.ProductId).HasColumnName("ProductID");
+
+                entity.HasOne(d => d.Location)
+                    .WithMany(p => p.Inventory)
+                    .HasForeignKey(d => d.LocationId);
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.Inventory)
+                    .HasForeignKey(d => d.ProductId);
+            });
+
+            modelBuilder.Entity<Location>(entity =>
+            {
+                entity.Property(e => e.LocationId).HasColumnName("LocationID");
+
+                entity.Property(e => e.LocationName)
+                    .IsRequired()
+                    .HasMaxLength(250);
+            });
+
+            modelBuilder.Entity<OrderHistory>(entity =>
+            {
+                entity.HasKey(e => e.OrderId);
+
+                entity.Property(e => e.OrderId).HasColumnName("OrderID");
+
+                entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+
+                entity.Property(e => e.Date).HasColumnType("date");
+
+                entity.Property(e => e.LocationId).HasColumnName("LocationID");
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.OrderHistory)
+                    .HasForeignKey(d => d.CustomerId)
+                    .HasConstraintName("FK_OrderHistory_Customer_CustomerID");
+
+                entity.HasOne(d => d.Location)
+                    .WithMany(p => p.OrderHistory)
+                    .HasForeignKey(d => d.LocationId);
+            });
+
+            modelBuilder.Entity<Orders>(entity =>
+            {
+                entity.HasKey(e => new { e.OrderId, e.ProductId });
+
+                entity.Property(e => e.OrderId).HasColumnName("OrderID");
+
+                entity.Property(e => e.ProductId).HasColumnName("ProductID");
+
+                entity.HasOne(d => d.Order)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.OrderId);
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.ProductId);
+            });
+
+            modelBuilder.Entity<Product>(entity =>
+            {
+                entity.Property(e => e.ProductId).HasColumnName("ProductID");
+
+                entity.Property(e => e.Price).HasColumnType("numeric(10, 2)");
+
+                entity.Property(e => e.ProductName)
                     .IsRequired()
                     .HasMaxLength(250);
             });

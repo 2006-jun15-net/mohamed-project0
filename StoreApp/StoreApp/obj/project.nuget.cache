@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "S+eFr3pYYEW5e9yKavBaNqtw2OulgJu7Fpxy3l3f+2H1dlA7w6x+Jcm85n+/1BVGP5gNAxjhpjPIfnBrBNxH1w==",
+  "dgSpecHash": "GM/ck0iehT6cXLzzm8/YVV/gFSlAZnZtnfrznsdb57oswYxE0bJF1CMh0SThqveFlt79xNIiRO/gC7K6hLJPdw==",
   "success": true,
   "projectFilePath": "C:\\Revature\\mohamed-project0\\StoreApp\\StoreApp\\StoreApp.csproj",
   "expectedPackageFiles": [
@@ -34,6 +34,7 @@
     "C:\\Users\\12012\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
     "C:\\Users\\12012\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
     "C:\\Users\\12012\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\12012\\.nuget\\packages\\nlog\\4.7.2\\nlog.4.7.2.nupkg.sha512",
     "C:\\Users\\12012\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\12012\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\12012\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",

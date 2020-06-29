@@ -1,14 +1,27 @@
 ﻿using System;
 using System.Threading;
 using StoreApp.Library.Models;
+using System.Runtime.CompilerServices;
+using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using StoreApp.DataAccess.Models;
 
 namespace StoreApp
 {
     class Program
     {
-        static void Main(string[] args)
-        {
+        public static readonly ILoggerFactory MyLoggerFactory
+            = LoggerFactory.Create(builder => { builder.AddConsole(); });
 
+        public static readonly DbContextOptions<NewDataBaseContext> Options = new DbContextOptionsBuilder<NewDataBaseContext>()
+            .UseLoggerFactory(MyLoggerFactory)
+            .UseSqlServer(SecretConfiguration.ConnectionString)
+            .Options;
+
+        public static void Main(string[] args)
+        {
+            Customer john = new Customer("Jon","Doe");
+            Console.WriteLine(john.FirstName);
             RunUI();
 
         }
@@ -58,7 +71,7 @@ namespace StoreApp
             int UserInput = Int32.Parse(Console.ReadLine());
             if(UserInput<1 || UserInput > 7)
             {
-                Console.WriteLine("Invalid Selection. Please try again.\n-----------------------------------------------------\n");
+                Console.WriteLine("\nInvalid Selection. Please try again.\n-----------------------------------------------------\n");
                 goto Begin;
             }
             return UserInput;
