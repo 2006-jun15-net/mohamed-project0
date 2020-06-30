@@ -90,10 +90,11 @@ namespace StoreApp
 
             using var context = new NewDataBaseContext(Options);
 
-            var NewCustomer = new Library.Models.Customer(Firstname,Lastname);
+            //var NewCustomer = new Library.Models.Customer(Firstname,Lastname);
 
 
-            context.Customer.Add(NewCustomer);
+
+            //context.Customer.Add(NewCustomer);
 
             
 

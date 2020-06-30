@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "b/w3z785mw6qE6EQWIED/KyPoBW+uF3fnr4fbbFuCRrwiEPN6MeTErhXVxew7ABuLOothFBhrQEkDOlnb2E17A==",
+  "dgSpecHash": "v2o2t5FjUxCnwIZXIaiYp7AyoCdQKmb2VOkPwuWQ8Qld5EYtyEsH/3WOwyJWil4S4jTY7dRCUajpPel0BTMTHA==",
   "success": true,
   "projectFilePath": "C:\\Revature\\mohamed-project0\\StoreApp\\StoreApp.DataAccess\\StoreApp.DataAccess.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\12012\\.nuget\\packages\\automapper\\9.0.0\\automapper.9.0.0.nupkg.sha512",
     "C:\\Users\\12012\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\12012\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
     "C:\\Users\\12012\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

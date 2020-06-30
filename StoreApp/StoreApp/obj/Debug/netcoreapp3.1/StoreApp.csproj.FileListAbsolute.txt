@@ -109,3 +109,4 @@ C:\Revature\mohamed-project0\StoreApp\StoreApp\obj\Debug\netcoreapp3.1\StoreApp.
 C:\Revature\mohamed-project0\StoreApp\StoreApp\obj\Debug\netcoreapp3.1\StoreApp.genruntimeconfig.cache
 C:\Revature\mohamed-project0\StoreApp\StoreApp\obj\Debug\netcoreapp3.1\StoreApp.csproj.CoreCompileInputs.cache
 C:\Revature\mohamed-project0\StoreApp\StoreApp\bin\Debug\netcoreapp3.1\NLog.dll
+C:\Revature\mohamed-project0\StoreApp\StoreApp\bin\Debug\netcoreapp3.1\AutoMapper.dll
