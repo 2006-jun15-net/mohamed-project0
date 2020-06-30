@@ -10,18 +10,11 @@ namespace StoreApp
 {
     public class Program
     {
-        public static readonly ILoggerFactory MyLoggerFactory
-            = LoggerFactory.Create(builder => { builder.AddConsole(); });
         
-        public static readonly DbContextOptions<NewDataBaseContext> Options = new DbContextOptionsBuilder<NewDataBaseContext>()
-            .UseLoggerFactory(MyLoggerFactory)
-            .UseSqlServer(SecretConfiguration.ConnectionString)
-            .Options;
         
         public static void Main(string[] args)
         {
-            Library.Models.Customer john = new Library.Models.Customer("Jon","Doe");
-            Console.WriteLine(john.FirstName);
+            //add repositories
             RunUI();
 
         }
@@ -88,17 +81,7 @@ namespace StoreApp
             Console.WriteLine("Enter a new customer last name: ");
             var Lastname = Console.ReadLine();
 
-            using var context = new NewDataBaseContext(Options);
 
-            //var NewCustomer = new Library.Models.Customer(Firstname,Lastname);
-
-
-
-            //context.Customer.Add(NewCustomer);
-
-            
-
-            context.SaveChanges();
             // after savechanges, any new or updated stuff implicit in what i coded before
             //   is filled in by EF for you on those tracked objects.
         }

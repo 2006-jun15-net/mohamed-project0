@@ -1362,7 +1362,8 @@
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "AutoMapper": "9.0.0",
-          "Microsoft.EntityFrameworkCore.SqlServer": "3.1.5"
+          "Microsoft.EntityFrameworkCore.SqlServer": "3.1.5",
+          "StoreApp.Library": "1.0.0"
         },
         "compile": {
           "bin/placeholder/StoreApp.DataAccess.dll": {}

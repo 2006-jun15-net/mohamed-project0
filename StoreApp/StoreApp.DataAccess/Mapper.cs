@@ -6,5 +6,6 @@ namespace StoreApp.DataAccess
 {
     public static class Mapper
     {
+        //map entities
     }
 }

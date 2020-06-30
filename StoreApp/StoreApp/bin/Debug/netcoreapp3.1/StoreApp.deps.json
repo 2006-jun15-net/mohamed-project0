@@ -942,7 +942,8 @@
       "StoreApp.DataAccess/1.0.0": {
         "dependencies": {
           "AutoMapper": "9.0.0",
-          "Microsoft.EntityFrameworkCore.SqlServer": "3.1.5"
+          "Microsoft.EntityFrameworkCore.SqlServer": "3.1.5",
+          "StoreApp.Library": "1.0.0"
         },
         "runtime": {
           "StoreApp.DataAccess.dll": {}

@@ -26,7 +26,11 @@
         },
         "frameworks": {
           "netstandard2.0": {
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Revature\\mohamed-project0\\StoreApp\\StoreApp.Library\\StoreApp.Library.csproj": {
+                "projectPath": "C:\\Revature\\mohamed-project0\\StoreApp\\StoreApp.Library\\StoreApp.Library.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
