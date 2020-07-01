@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using StoreApp.DataAccess.Models;
+using da = StoreApp.DataAccess.Models;
 using StoreApp.Library.Interfaces;
 using System.Linq;
 using StoreApp.Library.Models;
@@ -16,16 +16,16 @@ namespace StoreApp.DataAccess.Repositories
         /// <summary>
         /// Creates customer repo for data manipulation of table
         /// </summary>
-        public readonly IProject0Repo<Models.Customer> repository = null;
+        public readonly IProject0Repo<da.Customer> repository = null;
         
         /// <summary>
         /// repo constructors
         /// </summary>
         public CustomerController()
         {
-            repository = new GenericRepository<Models.Customer>(); 
+            repository = new GenericRepository<da.Customer>(); 
         }
-        public CustomerController(IProject0Repo<Models.Customer> newRepo)
+        public CustomerController(IProject0Repo<da.Customer> newRepo)
         {
             this.repository = newRepo;
         }
@@ -38,7 +38,7 @@ namespace StoreApp.DataAccess.Repositories
             Console.WriteLine("Customers in Database: ");
             foreach(var item in repository.GetAll().ToList())
             {
-                Console.WriteLine($"Name: {0} {1} ID: {2}\n", item.FirstName, item.LastName, item.CustomerId);
+                Console.WriteLine($"Name: {item.FirstName} {item.LastName} CustomerID: {item.CustomerId}\n");
             }
         }
         /// <summary>
@@ -46,17 +46,17 @@ namespace StoreApp.DataAccess.Repositories
         /// </summary>
         /// <param name="ID"></param>
         /// <returns></returns>
-        public Models.Customer SearchCustomerByID(int ID)
+        public da.Customer SearchCustomerByID(int ID)
         {
             if (repository.GetAll().Any(cust => cust.CustomerId.Equals(ID)))
             {
-                Models.Customer customer = repository.GetAll().First(cust => cust.CustomerId.Equals(ID));
-                Console.WriteLine($"Customer: {0} {1} with id {2}",customer.FirstName,customer.LastName, customer.CustomerId);
+                da.Customer customer = repository.GetAll().First(cust => cust.CustomerId.Equals(ID));
+                Console.WriteLine($"Customer: {customer.FirstName} {customer.LastName} with id {customer.CustomerId}\n" );
                 return customer;
             }
             else
             {
-                Console.WriteLine($"No customers exist with this ID.");
+                Console.WriteLine($"No customers exist with this ID.\n");
                 return null;
             }
 

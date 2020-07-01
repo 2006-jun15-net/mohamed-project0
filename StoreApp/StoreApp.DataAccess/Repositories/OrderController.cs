@@ -50,18 +50,18 @@ namespace StoreApp.DataAccess.Repositories
                         .ThenInclude(or => or.Product)
                     .First(o => o.OrderId == orderId);
 
-                Console.WriteLine($"OrderID: {0} Total Cost: {1}\n" + $"CustomerID: {2} Date-Time: {3} {4} LocationID: {5}\n",
-                    order.OrderId, order.TotalCost, order.CustomerId, order.Date,order.Time, order.LocationId);
+                Console.WriteLine($"OrderID: {order.OrderId} Total Cost: {order.TotalCost}\n" + 
+                    $"CustomerID: {order.CustomerId} Date-Time: {order.Date} {order.Time} LocationID: {order.LocationId}\n");
 
-                foreach (var or in order.Order)
+                foreach (var a in order.Order)
                 {
-                    Console.WriteLine($"Product: {0}\nPrice: {1}\nQty: {2}\n", or.Product.ProductName, or.Product.Price, or.Amount);
+                    Console.WriteLine($"Product: {a.Product.ProductName}\nPrice: {a.Product.Price}\nQty: {a.Amount}\n");
                 }
                 context.Dispose();
             }
             else
             {
-                Console.WriteLine($"Order not found.");
+                Console.WriteLine($"\nSorry, Order not found.\n");
             }
 
         }
@@ -82,7 +82,7 @@ namespace StoreApp.DataAccess.Repositories
             }
             else
             {
-                Console.WriteLine($"No orders found at this location.");
+                Console.WriteLine($"\nNo orders found at this location.\n");
             }
 
         }

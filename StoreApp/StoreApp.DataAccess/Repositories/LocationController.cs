@@ -33,7 +33,7 @@ namespace StoreApp.DataAccess.Repositories
             Console.WriteLine("List of Stores:\n");
             foreach (var item in repository.GetAll().ToList())
             {
-                Console.WriteLine($"Location: {0} ID: {1}\n", item.LocationName, item.LocationId);
+                Console.WriteLine($"Location: {item.LocationName} ID: {item.LocationId}\n");
             }
         }
     }

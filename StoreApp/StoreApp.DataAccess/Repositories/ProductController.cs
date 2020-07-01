@@ -32,7 +32,7 @@ namespace StoreApp.DataAccess.Repositories
             Console.WriteLine("All Products:\n");
             foreach (var item in repository.GetAll().ToList())
             {
-                Console.WriteLine($"Product Name: {0} ID: {1}\n", item.ProductName, item.ProductId);
+                Console.WriteLine($"Product Name: {item.ProductName} ID: {item.ProductId}\n");
             }
         }
     }

@@ -18,16 +18,17 @@ namespace StoreApp.DataAccess.Repositories
             = LoggerFactory.Create(builder => { builder.AddConsole(); });
 
         public static readonly DbContextOptions<NewDataBaseContext> Options = new DbContextOptionsBuilder<NewDataBaseContext>()
-            .UseLoggerFactory(MyLoggerFactory)
+            //.UseLoggerFactory(MyLoggerFactory)
             .UseSqlServer(SecretConfiguration.ConnectionString)
             .Options;
 
         private NewDataBaseContext _context = null;
-        public DbSet<T> table = null;
+        
+        private DbSet<T> table = null;
 
         public GenericRepository()
         {
-            this._context = new NewDataBaseContext();
+            this._context = new NewDataBaseContext(Options);
             table = _context.Set<T>();
         }
         public GenericRepository(NewDataBaseContext _context)

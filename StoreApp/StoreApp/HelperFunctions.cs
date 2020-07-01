@@ -19,7 +19,7 @@ namespace StoreApp
         {
             //Login for for customer or register new customer
             da.Customer user = new da.Customer();
-        registerMenu:
+            registerMenu:
             Console.WriteLine("\n                       Welcome to the Online Grocercy Market Place!");
             Console.WriteLine("------------------------------------------------------------------------------------------\n");
             Console.WriteLine("1. Login");
@@ -77,7 +77,7 @@ namespace StoreApp
                     customerController.repository.Add(newCustomer);
                     customerController.repository.Save();
                     user = customerController.repository.GetById(customerController.repository.GetAll().First(c => c.LastName == last && c.FirstName == first).CustomerId);
-                    Console.WriteLine($"\nRegistration successful! CustomerID: {0}\n", user.CustomerId);
+                    Console.WriteLine($"\nRegistration successful! CustomerID: {user.CustomerId}\n");
                     break;
 
                 default:
@@ -137,12 +137,16 @@ namespace StoreApp
                         Console.Write("Selection: ");
                         userInput = Console.ReadLine();
                     }
+                    if (productID == 9)
+                    {
+                        refresh = false;
+                    }
                     //check to see if duplicate products were added
                     if (shoppingCart != null)
                     {
                         while (shoppingCart.Keys.Any(p => p.ProductId == productID))
                         {
-                            Console.WriteLine("Duplicate item in cart. ");
+                            Console.WriteLine("\nDuplicate item in cart.\n ");
                             //display items in cart
                             foreach (var item in inventory)
                             {
@@ -154,11 +158,19 @@ namespace StoreApp
                             userInput = Console.ReadLine();
                             while (!int.TryParse(userInput, out productID))
                             {
+                                if (productID == 9)
+                                {
+                                    refresh = false;
+                                }
                                 Console.WriteLine("Invalid selection, please try again.");
                                 Console.WriteLine("\nEnter the ProductID to add to cart");
                                 Console.WriteLine("Enter 9 to checkout");
                                 Console.Write("Selection: ");
                                 userInput = Console.ReadLine();
+                            }
+                            if (productID == 9)
+                            {
+                                refresh = false;
                             }
                         }
                     }
@@ -192,7 +204,7 @@ namespace StoreApp
                             }
                             else if (amt > inv.Amount)
                             {
-                                Console.WriteLine($"Not enough {0}s in stock.", prdt.ProductName);
+                                Console.WriteLine($"Not enough {prdt.ProductName}s in stock.");
                             }
                             //If conditions above pass, update inventory,
                             else
