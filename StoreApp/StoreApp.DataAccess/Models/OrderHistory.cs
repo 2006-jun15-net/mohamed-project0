@@ -15,6 +15,7 @@ namespace StoreApp.DataAccess.Models
         public int LocationId { get; set; }
         public DateTime Date { get; set; }
         public TimeSpan Time { get; set; }
+        public decimal? TotalCost { get; set; }
 
         public virtual Customer Customer { get; set; }
         public virtual Location Location { get; set; }

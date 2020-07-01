@@ -23,12 +23,12 @@ namespace StoreApp.DataAccess.Repositories
             .Options;
 
         private NewDataBaseContext _context = null;
-        private DbSet<T> table = null;
+        public DbSet<T> table = null;
 
         public GenericRepository()
         {
             this._context = new NewDataBaseContext();
-            this.table = _context.Set<T>();
+            table = _context.Set<T>();
         }
         public void Add(T obj)
         {
