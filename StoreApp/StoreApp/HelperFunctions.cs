@@ -108,7 +108,7 @@ namespace StoreApp
             {
                 var selectedLocation = lcontroller.repository.GetById(locationid);
 
-                using var context = new NewDataBaseContext(GenericRepository<Location>.Options);
+                using var context = new NewDataBaseContext(GenericRepository<da.Location>.Options);
                 var inventory = context.Inventory
                     .Include(i => i.Product)
                     .Where(i => i.LocationId == locationid)

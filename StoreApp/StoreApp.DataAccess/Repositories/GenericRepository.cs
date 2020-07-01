@@ -30,6 +30,11 @@ namespace StoreApp.DataAccess.Repositories
             this._context = new NewDataBaseContext();
             table = _context.Set<T>();
         }
+        public GenericRepository(NewDataBaseContext _context)
+        {
+            this._context = _context;
+            table = _context.Set<T>();
+        }
         public void Add(T obj)
         {
             table.Add(obj);
