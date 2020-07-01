@@ -19,12 +19,13 @@ namespace StoreApp
         {
             //Login for for customer or register new customer
             da.Customer user = new da.Customer();
+            //display login menu
             registerMenu:
             Console.WriteLine("------------------------------------------------------------------------------------------\n");
             Console.WriteLine("1. Login");
             Console.WriteLine("2. Register new customer");
             Console.Write("Please select an option: ");
-
+            //take in user input, input validation
             string choice = Console.ReadLine();
             int input;
             while (!int.TryParse(choice, out input))
@@ -34,7 +35,7 @@ namespace StoreApp
             }
 
             switch (input)
-            {
+            {//switch case for login
                 case 1:
                     if (customerController.repository.GetAll().FirstOrDefault() == null)
                     {
@@ -123,7 +124,7 @@ namespace StoreApp
                     Console.WriteLine("Select an item to add to cart:");
                     foreach (var item in inventory)
                     {
-                        Console.WriteLine($"\nProduct: {item.Product.ProductName} Price: ${item.Product.Price} ID: {item.Product.ProductId} Quantity: {item.Amount}\n");
+                        Console.WriteLine($"\nProduct: {item.Product.ProductName}       Price: ${item.Product.Price}        ProductID: {item.Product.ProductId} Quantity: {item.Amount}\n");
                     }
                     Console.WriteLine("Enter the ProductID to add to order");
                     Console.WriteLine("Enter 0 to checkout");
@@ -247,7 +248,7 @@ namespace StoreApp
                         orderTotal += (item.Price * shoppingCart[item]);
                     }
 
-                    Console.WriteLine($"\nOrder Total: {orderTotal}");
+                    Console.WriteLine($"\nOrder Total: ${orderTotal}");
 
 
                     //Save the order to order history, create the order

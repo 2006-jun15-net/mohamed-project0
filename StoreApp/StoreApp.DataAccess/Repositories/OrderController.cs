@@ -32,7 +32,8 @@ namespace StoreApp.DataAccess.Repositories
             Console.WriteLine("Orders in Database:\n");
             foreach (var item in repository.GetAll().ToList())
             {
-                Console.WriteLine($"OrderID: {item.OrderId} Total Cost: {item.TotalCost}\n" + $"CustomerID: {item.CustomerId} Date-Time: {item.Date} {item.Time} LocationID: {item.LocationId}\n");
+                Console.WriteLine($"OrderID: {item.OrderId} Total Cost: ${item.TotalCost}\n" + $"CustomerID: {item.CustomerId} Date-Time: {item.Date} {item.Time} LocationID: {item.LocationId}\n");
+                Console.WriteLine("------------------------------------------------------------------------------------------------------------");
             }
         }
         /// <summary>
@@ -49,12 +50,12 @@ namespace StoreApp.DataAccess.Repositories
                         .ThenInclude(or => or.Product)
                     .First(o => o.OrderId == orderId);
 
-                Console.WriteLine($"OrderID: {order.OrderId} Total Cost: {order.TotalCost}\n" + 
+                Console.WriteLine($"OrderID: {order.OrderId} Total Cost: ${order.TotalCost}\n" + 
                     $"CustomerID: {order.CustomerId} Date-Time: {order.Date} {order.Time} LocationID: {order.LocationId}\n");
 
                 foreach (var a in order.Order)
                 {
-                    Console.WriteLine($"Product: {a.Product.ProductName}\nPrice: {a.Product.Price}\nQty: {a.Amount}\n");
+                    Console.WriteLine($"Product: {a.Product.ProductName}\nPrice: ${a.Product.Price}\nQty: {a.Amount}\n");
                 }
                 context.Dispose();
             }
