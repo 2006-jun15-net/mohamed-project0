@@ -20,7 +20,6 @@ namespace StoreApp
             //Login for for customer or register new customer
             da.Customer user = new da.Customer();
             registerMenu:
-            Console.WriteLine("\n                       Welcome to the Online Grocercy Market Place!");
             Console.WriteLine("------------------------------------------------------------------------------------------\n");
             Console.WriteLine("1. Login");
             Console.WriteLine("2. Register new customer");
@@ -39,12 +38,12 @@ namespace StoreApp
                 case 1:
                     if (customerController.repository.GetAll().FirstOrDefault() == null)
                     {
-                        Console.WriteLine("No customers are registered. Please register as a new customer.");
+                        Console.WriteLine("\nNo customers are registered. Please register as a new customer.");
                     }
                     else
                     {
                         customerController.DisplayCustomers();
-                        Console.WriteLine("\nEnter CustomerID: ");
+                        Console.Write("\nEnter CustomerID: ");
                         choice = Console.ReadLine();
                         int customerid;
                         while (!int.TryParse(choice, out customerid))
@@ -55,7 +54,7 @@ namespace StoreApp
                         if (customerController.repository.GetAll().Any(c => c.CustomerId == customerid))
                         {
                             user = customerController.repository.GetById(customerid);
-                            Console.WriteLine("\nSuccessfully logged in!\n");
+                            Console.WriteLine($"\nSuccessfully logged in as {user.FirstName} {user.LastName}!\n");
                         }
                         else
                         {
@@ -91,15 +90,16 @@ namespace StoreApp
         public static void PlaceOrder(da.Customer currentCustomer, LocationController lcontroller, ProductController pcontroller, OrderController oc)
         {
             //Ask for store location for order
+            Console.WriteLine("\n------------------------------------------------------------------------------------------\n");
             Console.WriteLine("Select the location you would like to order from: ");
             lcontroller.DisplayLocations();
-            Console.WriteLine("Enter the LocationID: ");
+            Console.Write("\nEnter the LocationID: ");
             string userIn = Console.ReadLine();
             int locationid;
             while (!int.TryParse(userIn, out locationid))
             {
-                Console.WriteLine("Invalid selection, please try again.\n");
-                Console.WriteLine("Enter the LocationID: ");
+                Console.WriteLine("\nInvalid selection, please try again.\n");
+                Console.Write("\nEnter the LocationID: ");
                 userIn = Console.ReadLine();
             }
 
@@ -119,25 +119,26 @@ namespace StoreApp
                 bool refresh = true;
                 while (refresh)
                 {
+                    Console.WriteLine("\n------------------------------------------------------------------------------------------\n");
                     Console.WriteLine("Select an item to add to cart:");
                     foreach (var item in inventory)
                     {
-                        Console.WriteLine($"Product: {item.Product.ProductName} Price: ${item.Product.Price} ID: {item.Product.ProductId} Quantity: {item.Amount}\n");
+                        Console.WriteLine($"\nProduct: {item.Product.ProductName} Price: ${item.Product.Price} ID: {item.Product.ProductId} Quantity: {item.Amount}\n");
                     }
                     Console.WriteLine("Enter the ProductID to add to order");
-                    Console.WriteLine("Enter 9 to checkout");
-                    Console.Write("Selection: ");
+                    Console.WriteLine("Enter 0 to checkout");
+                    Console.Write("\nSelection: ");
                     string userInput = Console.ReadLine();
                     int productID;
                     while (!int.TryParse(userInput, out productID))
                     {
                         Console.WriteLine("Invalid selection, please try again.");
                         Console.WriteLine("\nEnter the ProductID to add to cart");
-                        Console.WriteLine("Enter 9 to checkout");
+                        Console.WriteLine("Enter 0 to checkout");
                         Console.Write("Selection: ");
                         userInput = Console.ReadLine();
                     }
-                    if (productID == 9)
+                    if (productID == 0)
                     {
                         refresh = false;
                     }
@@ -153,28 +154,28 @@ namespace StoreApp
                                 Console.WriteLine($"Product: {item.Product.ProductName} Price: ${item.Product.Price} ID: {item.Product.ProductId} In Stock: {item.Amount}\n");
                             }
                             Console.WriteLine("\nEnter the ProductID to add to cart");
-                            Console.WriteLine("Enter 9 to checkout");
-                            Console.Write("Selection: ");
+                            Console.WriteLine("Enter 0 to checkout");
+                            Console.Write("\nSelection: ");
                             userInput = Console.ReadLine();
                             while (!int.TryParse(userInput, out productID))
                             {
-                                if (productID == 9)
+                                if (productID == 0)
                                 {
                                     refresh = false;
                                 }
                                 Console.WriteLine("Invalid selection, please try again.");
                                 Console.WriteLine("\nEnter the ProductID to add to cart");
-                                Console.WriteLine("Enter 9 to checkout");
-                                Console.Write("Selection: ");
+                                Console.WriteLine("Enter 0 to checkout");
+                                Console.Write("\nSelection: ");
                                 userInput = Console.ReadLine();
                             }
-                            if (productID == 9)
+                            if (productID == 0)
                             {
                                 refresh = false;
                             }
                         }
                     }
-                    if (productID == 9)
+                    if (productID == 0)
                     {
                         refresh = false;
                     }
@@ -183,14 +184,14 @@ namespace StoreApp
                     {
                         //check that product chosen is in stock 
                         var prdt = pcontroller.repository.GetById(productID);
-                        Console.Write($"Enter amount of {prdt.ProductName}s to add to the cart:");
+                        Console.Write($"\nEnter amount of {prdt.ProductName}s to add to the cart:");
                         userInput = Console.ReadLine();
                         int amt;
                         //input validation
                         while (!int.TryParse(userInput, out amt))
                         {
                             Console.WriteLine("Invalid selection. Please try again.");
-                            Console.Write($"Enter amount of {prdt.ProductName}s to add to the cart:");
+                            Console.Write($"\nEnter amount of {prdt.ProductName}s to add to the cart:");
                             userInput = Console.ReadLine();
                         }
                         //product is in stock
@@ -199,12 +200,12 @@ namespace StoreApp
                             Inventory inv = inventory.First(i => i.Product.ProductId == productID);
                             if (inv.Amount == 0)
                             {
-                                Console.WriteLine($"{prdt.ProductName} is out of stock.");
+                                Console.WriteLine($"\n{prdt.ProductName} is out of stock.");
 
                             }
                             else if (amt > inv.Amount)
                             {
-                                Console.WriteLine($"Not enough {prdt.ProductName}s in stock.");
+                                Console.WriteLine($"\nNot enough {prdt.ProductName}s in stock.");
                             }
                             //If conditions above pass, update inventory,
                             else
@@ -213,7 +214,7 @@ namespace StoreApp
                                 inv.Amount -= amt;
                                 context.Update(inv);
                                 context.SaveChanges();
-                                Console.WriteLine("Product added to cart!");
+                                Console.WriteLine("\nProduct added to cart!");
                             }
 
                         }
@@ -222,16 +223,20 @@ namespace StoreApp
                             Console.WriteLine("Invalid selection. Please try again.");
                         }
                     }
+                    if (productID == 0)
+                    {
+                        refresh = false;
+                    }
                     else
                     {
-                        Console.WriteLine($"This product is unavailable in the current Location.");
+                        Console.WriteLine($"\nThis product is unavailable in the current Location.");
                     }
 
                 }
                 //If cart is not empty, update database
                 if (shoppingCart.Count == 0)
                 {
-                    Console.WriteLine("No products were added to order.");
+                    Console.WriteLine("\nNo products were added to order. No order was made. Come back soon!\n");
                 }
                 else
                 {
@@ -242,7 +247,7 @@ namespace StoreApp
                         orderTotal += (item.Price * shoppingCart[item]);
                     }
 
-                    Console.WriteLine($"Order Total: {orderTotal}");
+                    Console.WriteLine($"\nOrder Total: {orderTotal}");
 
 
                     //Save the order to order history, create the order
@@ -267,7 +272,7 @@ namespace StoreApp
             }
             else
             {
-                Console.WriteLine($"This location does not exist.");
+                Console.WriteLine($"\nThis location does not exist.");
             }
 
         }

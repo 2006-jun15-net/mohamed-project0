@@ -35,7 +35,9 @@ namespace StoreApp.DataAccess.Repositories
         /// </summary>
         public void DisplayCustomers()
         {
-            Console.WriteLine("Customers in Database: ");
+
+            Console.WriteLine("\n------------------------------------------------------------------------------------------\n");
+            Console.WriteLine("Customers in Database:\n ");
             foreach(var item in repository.GetAll().ToList())
             {
                 Console.WriteLine($"Name: {item.FirstName} {item.LastName} CustomerID: {item.CustomerId}\n");
@@ -46,17 +48,17 @@ namespace StoreApp.DataAccess.Repositories
         /// </summary>
         /// <param name="ID"></param>
         /// <returns></returns>
-        public da.Customer SearchCustomerByID(int ID)
+        public da.Customer SearchCustomerByName(string query)
         {
-            if (repository.GetAll().Any(cust => cust.CustomerId.Equals(ID)))
+            if (repository.GetAll().Any(cust => cust.FirstName.ToLower().Equals(query)))
             {
-                da.Customer customer = repository.GetAll().First(cust => cust.CustomerId.Equals(ID));
-                Console.WriteLine($"Customer: {customer.FirstName} {customer.LastName} with id {customer.CustomerId}\n" );
+                da.Customer customer = repository.GetAll().First(cust => cust.FirstName.ToLower().Equals(query));
+                Console.WriteLine($"\nCustomer: {customer.FirstName} {customer.LastName} with CustomerId: {customer.CustomerId}\n" );
                 return customer;
             }
             else
             {
-                Console.WriteLine($"No customers exist with this ID.\n");
+                Console.WriteLine($"\nNo customers exist with this name.\n");
                 return null;
             }
 

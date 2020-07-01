@@ -29,11 +29,10 @@ namespace StoreApp.DataAccess.Repositories
         /// </summary>
         public void DisplayOrders()
         {
-            Console.WriteLine("Orders in Database:");
+            Console.WriteLine("Orders in Database:\n");
             foreach (var item in repository.GetAll().ToList())
             {
-                Console.WriteLine($"OrderID: {0} Total Cost: {1}\n" + $"CustomerID: {2} Date-Time: {3} {4} LocationID: {5}\n", 
-                    item.OrderId, item.TotalCost, item.CustomerId, item.Date, item.Time, item.LocationId);
+                Console.WriteLine($"OrderID: {item.OrderId} Total Cost: {item.TotalCost}\n" + $"CustomerID: {item.CustomerId} Date-Time: {item.Date} {item.Time} LocationID: {item.LocationId}\n");
             }
         }
         /// <summary>

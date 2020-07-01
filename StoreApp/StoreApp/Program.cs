@@ -59,27 +59,21 @@ namespace StoreApp
                         }
                         break;
                     case 3:
-                        //Search for a new customer by id. method called from controller repository for customer
+                        //Search for a customer by id. method called from controller repository for customer
                         //ask for user id
-                        Console.Write("Enter CustomerID:");
-                        string userid = Console.ReadLine();
-                        int cid;
-                        
-                        //input validation
-                        while (!int.TryParse(userid, out cid))
-                        {
-                            Console.Write("\nInvalid selection. Please try again: ");
-                            userid = Console.ReadLine();
-                        }
-                        
+                        Console.WriteLine("------------------------------------------------------------------------------------------\n");
+                        Console.Write("Enter first name to search: ");
+                        string query = Console.ReadLine();
+                        string actualQuery = query.ToLower();
                         //call search for customer method that displays customer details and returns customer
-                        customerController.SearchCustomerByID(cid);
+                        customerController.SearchCustomerByName(actualQuery);
                         break;
                     case 4:
                         //Get order details of an order by getting order id
-                        Console.WriteLine("Select Order:");
+                        Console.WriteLine("------------------------------------------------------------------------------------------\n");
+                        Console.WriteLine("Select Order:\n");
                         orderController.DisplayOrders();
-                        Console.Write("Enter OrderID: ");
+                        Console.Write("\nEnter OrderID: ");
                         
                         //obtain order id
                         string selection = Console.ReadLine();
@@ -98,9 +92,9 @@ namespace StoreApp
                     case 5:
                         //Display order history of a store location
                         //obtain the desired locationid 
-                        Console.WriteLine("Select the location you want the order history for:");
+                        Console.WriteLine("\nSelect the location you want the order history for:\n");
                         locationController.DisplayLocations();
-                        Console.Write("Enter the LocationID: ");
+                        Console.Write("\nEnter the LocationID: ");
                         string cinput = Console.ReadLine();
                         int locationid;
                         
@@ -114,14 +108,14 @@ namespace StoreApp
                         //if locationid is in table, then display order history in that location
                         if (locationController.repository.GetAll().Any(s => s.LocationId == locationid))
                         {
-                            Console.WriteLine($"Order history for {locationController.repository.GetById(locationid).LocationName}");
+                            Console.WriteLine($"\nOrder history for {locationController.repository.GetById(locationid).LocationName}");
                             orderController.DisplayOrderDetailsOfStore(locationid);
                         }
 
                         //location was not found, display not found message
                         else
                         {
-                            Console.WriteLine("This Location does not exist.");
+                            Console.WriteLine("\nThis Location does not exist.");
                         }
                         break;
                     case 6:
@@ -134,7 +128,7 @@ namespace StoreApp
                         //Find display order history of the customer using order controller repo
                         else
                         {
-                            Console.WriteLine($"Order history for customer {0} {1}:", customer1.FirstName, customer1.LastName);
+                            Console.WriteLine($"\nOrder history for customer: {customer1.FirstName} {customer1.LastName}\n");
                             orderController.DisplayOrderDetailsOfCustomer(customer1.CustomerId);
                         }
                         break;
