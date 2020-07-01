@@ -21,6 +21,9 @@ namespace StoreApp.DataAccess.Repositories
         /// <summary>
         /// repo constructors
         /// </summary>
+        /// 
+
+        //initizalize the controller
         public CustomerController()
         {
             repository = new GenericRepository<da.Customer>(); 
@@ -44,18 +47,21 @@ namespace StoreApp.DataAccess.Repositories
             }
         }
         /// <summary>
-        /// Takes in customerID which is searched for in the customer table and returns that customer, if no mathcing id found, return null and display error message
+        /// Takes in customer name and returns first instance of that customer
         /// </summary>
-        /// <param name="ID"></param>
-        /// <returns></returns>
+        /// 
+
+
         public da.Customer SearchCustomerByName(string query)
         {
+            //lower cases the query and matches the query to lowercase first names
             if (repository.GetAll().Any(cust => cust.FirstName.ToLower().Equals(query)))
             {
                 da.Customer customer = repository.GetAll().First(cust => cust.FirstName.ToLower().Equals(query));
                 Console.WriteLine($"\nCustomer: {customer.FirstName} {customer.LastName} with CustomerId: {customer.CustomerId}\n" );
                 return customer;
             }
+            //if cant find a customer, than display error message...need to implement try catches;
             else
             {
                 Console.WriteLine($"\nNo customers exist with this name.\n");

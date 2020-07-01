@@ -8,6 +8,7 @@ namespace StoreApp.DataAccess.Models
         public OrderHistory()
         {
             Order = new HashSet<Order>();
+            this.Date = DateTime.Now;
         }
 
         public int OrderId { get; set; }

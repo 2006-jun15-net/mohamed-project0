@@ -15,6 +15,7 @@ namespace StoreApp.DataAccess.Repositories
     {
         public readonly IProject0Repo<Models.Location> repository = null;
 
+        // intialiize the locationcontroller repo, 
         public LocationController()
         {
             repository = new GenericRepository<Models.Location>();
@@ -26,7 +27,7 @@ namespace StoreApp.DataAccess.Repositories
         }
 
         /// <summary>
-        /// Display all locations
+        /// Display all locations available in the locations table using get all to list
         /// </summary>
         public void DisplayLocations()
         {

@@ -43,6 +43,7 @@ namespace StoreApp
                     }
                     else
                     {
+                        //display all customers
                         customerController.DisplayCustomers();
                         Console.Write("\nEnter CustomerID: ");
                         choice = Console.ReadLine();

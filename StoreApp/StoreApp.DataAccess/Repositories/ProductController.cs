@@ -28,11 +28,11 @@ namespace StoreApp.DataAccess.Repositories
         /// Displays all products in database
         /// </summary>
         public void DisplayProducts()
-        {
+        {   //loops through products in data base with name and price
             Console.WriteLine("All Products:\n");
             foreach (var item in repository.GetAll().ToList())
             {
-                Console.WriteLine($"Product Name: {item.ProductName} ID: {item.ProductId}\n");
+                Console.WriteLine($"Product Name: {item.ProductName} ProductID: {item.ProductId}\n");
             }
         }
     }

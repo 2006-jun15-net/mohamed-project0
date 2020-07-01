@@ -25,10 +25,11 @@ namespace StoreApp.DataAccess.Repositories
         }
 
         /// <summary>
-        /// Prints content of the orders table
+        /// Prints all orders in the orders tables
         /// </summary>
         public void DisplayOrders()
         {
+            //loops through the orders to display every order in database
             Console.WriteLine("Orders in Database:\n");
             foreach (var item in repository.GetAll().ToList())
             {
@@ -37,22 +38,23 @@ namespace StoreApp.DataAccess.Repositories
             }
         }
         /// <summary>
-        /// Display Details of an order
+        /// this function display Details of an order
         /// </summary>
-        /// <param name="orderId">The id of the order</param>
         public void DisplayOrderDetails(int orderId)
         {
+            //Trys to find the order id matching the parameter passed in
             if (repository.GetAll().Any(o => o.OrderId == orderId))
             {
+                //loads that order into variable
                 var context = new NewDataBaseContext(GenericRepository<OrderHistory>.Options);
                 var order = context.OrderHistory
                     .Include(o => o.Order)
                         .ThenInclude(or => or.Product)
                     .First(o => o.OrderId == orderId);
-
+                //Displays the details of that order calling it from the order variablle
                 Console.WriteLine($"OrderID: {order.OrderId} Total Cost: ${order.TotalCost}\n" + 
                     $"CustomerID: {order.CustomerId} Date-Time: {order.Date} {order.Time} LocationID: {order.LocationId}\n");
-
+                //loops through all the items in cart
                 foreach (var a in order.Order)
                 {
                     Console.WriteLine($"Product: {a.Product.ProductName}\nPrice: ${a.Product.Price}\nQty: {a.Amount}\n");
@@ -67,11 +69,12 @@ namespace StoreApp.DataAccess.Repositories
         }
 
         /// <summary>
-        /// Print all orderhistory of a Location
+        /// Print the orderhistory of a Location
         /// </summary>
         /// <param name="locationid">Location ID</param>
         public void DisplayOrderDetailsOfStore(int locationid)
         {
+            //once correct location id is found matching param, we can display the order history (order details) of each order
             if (repository.GetAll().Any(o => o.LocationId == locationid))
             {
                 List<OrderHistory> orders = repository.GetAll().Where(o => o.LocationId == locationid).ToList();
