@@ -148,7 +148,7 @@ namespace StoreApp
         public static int DisplayMenu()
         {
             Begin:
-            Console.WriteLine("\n                       Welcome to the Online Grocercy Market Place!");
+            Console.WriteLine("\n                       Welcome to the Online Grocery Market Place!");
             Console.WriteLine("------------------------------------------------------------------------------------------\n");
             Console.WriteLine("1: Login or Register");
             Console.WriteLine("2: Place an order");
