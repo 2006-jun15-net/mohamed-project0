@@ -36,27 +36,46 @@ namespace StoreApp.DataAccess.Repositories
             this._context = _context;
             table = _context.Set<T>();
         }
+        /// <summary>
+        /// Adds a new entity to the database
+        /// </summary>
+        /// <param name="obj"></param>
         public void Add(T obj)
         {
             table.Add(obj);
         }
-
+        /// <summary>
+        /// Delete a entity from the database
+        /// </summary>
+        /// <param name="id"></param>
         public void Delete(object id)
         {
             T existing = table.Find(id);
             table.Remove(existing);
         }
 
+        /// <summary>
+        /// Gets all entities of type T
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<T> GetAll()
         {
             return table;
         }
 
+        /// <summary>
+        /// Retrieves a specific entity
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public T GetById(object id)
         {
             return table.Find(id);
         }
 
+        /// <summary>
+        /// Saves all current changes made to your Entities of type T to the Database
+        /// </summary>
         public void Save()
         {
             _context.SaveChanges();
