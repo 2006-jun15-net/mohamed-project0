@@ -22,22 +22,29 @@ namespace StoreApp.DataAccess.Repositories
             .UseSqlServer(SecretConfiguration.ConnectionString)
             .Options;
 
+        //database context that each repository will use to access database
         private NewDataBaseContext _context = null;
-        
+       
         private DbSet<T> table = null;
-
+        /// <summary>
+        /// generic repo constructor, used for intializing the repositories with the context and table using options
+        /// </summary>
         public GenericRepository()
         {
             this._context = new NewDataBaseContext(Options);
             table = _context.Set<T>();
         }
+        /// <summary>
+        /// constuctor intializing the context and table with the context generated from the constructor taking in options
+        /// </summary>
+        /// <param name="_context"></param>
         public GenericRepository(NewDataBaseContext _context)
         {
             this._context = _context;
             table = _context.Set<T>();
         }
         /// <summary>
-        /// Adds a new entity to the database
+        /// method that adds an object(record) into the table , takes in an object
         /// </summary>
         /// <param name="obj"></param>
         public void Add(T obj)
@@ -45,7 +52,7 @@ namespace StoreApp.DataAccess.Repositories
             table.Add(obj);
         }
         /// <summary>
-        /// Delete a entity from the database
+        /// method for deleting an object(record) in the table, using the id of the object thats passed in
         /// </summary>
         /// <param name="id"></param>
         public void Delete(object id)
@@ -53,9 +60,8 @@ namespace StoreApp.DataAccess.Repositories
             T existing = table.Find(id);
             table.Remove(existing);
         }
-
         /// <summary>
-        /// Gets all entities of type T
+        /// method returning a collection of items in the table
         /// </summary>
         /// <returns></returns>
         public IEnumerable<T> GetAll()
@@ -64,7 +70,7 @@ namespace StoreApp.DataAccess.Repositories
         }
 
         /// <summary>
-        /// Retrieves a specific entity
+        /// get method for retrieving a specific object(record) from a database table using the object id as a parameter
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
