@@ -80,9 +80,8 @@ namespace StoreApp.DataAccess.Repositories
         }
 
         /// <summary>
-        /// saves changes to the database
+        /// Saves all current changes made to your Entities of type T to the Database
         /// </summary>
-
         public void Save()
         {
             _context.SaveChanges();
